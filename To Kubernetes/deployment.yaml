@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nse-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nse-app
+  template:
+    metadata:
+      labels:
+        app: nse-app
+    spec:
+      containers:
+      - name: nse-app
+	image:asia-south1-docker.pkg.dev/dark-subject-406012/nse-app/nse_app:v1
+        ports:
+        - containerPort: 5000

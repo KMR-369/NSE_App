@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class="navbar" style="background-color:aliceblue;">  
+  <div class="container-fluid">    
+      <button class="btn btn-outline-warning"><a class="nav-link" href="/graph">Show Graph</a></button>
+      <form class="d-flex" role="search" method="POST" action="/user">
+        <h6>Sort by Date</h6>
+        <select class="form-select" aria-label="Default select example" name="selectedDate">
+          {% for d in values1 %}
+              <option value= "{{d}}" SELECTED>{{d}}</option>"
+          {% endfor %}
+        </select>
+        <input type="submit" name="" value="Search" class="btn btn-outline-primary">
+      </form>    
+  </div>
+</nav>
+<!-- <nav class="navbar bg-light">  
+  <div class="container-fluid">    
+      <h5>Sort the data by date</h>
+      <form class="d-flex" role="search" method="POST" action="/user">
+        <select class="form-select" aria-label="Default select example" name="selectedDate">
+          {% for d in values1 %}
+              <option value= "{{d}}" SELECTED>{{d}}</option>"
+          {% endfor %}
+        </select>
+        <input type="submit" name="" value="submit" class="btn btn-outline-primary">
+
+        <button class="btn btn-outline-info"><a class="nav-link" href="/user">Show Data</a></button>
+      </form>
+  </div>
+</nav> -->
+<table class="table table-dark">
+  <thead>
+    <tr style="color:bisque;font:medium">
+      <th scope="col">S.No</th>
+      <th scope="col">Date</th>
+      <th scope="col">Symbol</th>
+      <th scope="col">Security</th>
+      <th scope="col">Open Price</th>
+      <th scope="col">Close Price</th>
+      <th scope="col">Low Price</th>
+      <th scope="col">High Price</th>
+    </tr>
+  </thead>
+  {% for ind in values.index: %}
+    <tbody>
+      <tr>
+        <th scope="row">{{ind+1}}</th>
+        <td>{{values['DATE'][ind]}}</td>
+        <td>{{values['SYMBOL'][ind]}}</td>
+        <td>{{values['SECURITY'][ind]}}</td>
+        <td>{{values['OPEN_PRICE'][ind]}}</td>
+        <td>{{values['CLOSE_PRICE'][ind]}}</td>
+        <td>{{values['LOW_PRICE'][ind]}}</td>
+        <td>{{values['HIGH_PRICE'][ind]}}</td>
+      </tr>
+    </tbody>
+  {% endfor %}
+{% endblock %}
